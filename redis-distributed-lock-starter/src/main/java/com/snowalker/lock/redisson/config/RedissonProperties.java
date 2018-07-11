@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2018/7/10
  * @desc Redisson配置映射类
  */
-@ConfigurationProperties(prefix = "redisson.server")
+@ConfigurationProperties(prefix = "redisson.lock.server")
 public class RedissonProperties {
 
     /**redis主机地址，ip：port，有多个用半角逗号分隔*/
