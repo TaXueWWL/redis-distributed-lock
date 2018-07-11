@@ -50,7 +50,7 @@ redis-distributed-lock-demo-spring &nbsp;      redis-distributed-lock-core 调�
         2018-07-10 23:00:20.005 |-INFO  [pool-3-thread-1] com.snowalker.lock.redisson.RedissonLock [35] -| 获取Redisson分布式锁[成功],lockName=redisson
         2018-07-10 23:00:20.006 |-INFO  [pool-3-thread-1] com.snowalker.executor.ExecutorRedissonNormal [27] -| [ExecutorRedisson]--执行定时任务开始，休眠三秒
         =======================业务逻辑============================= 
-### springboot应用（注解方式方式）
+### springboot应用（注解方式）
 1. 前提条件同样是要引入依赖
 
         <!--分布式锁redisson版本-->
