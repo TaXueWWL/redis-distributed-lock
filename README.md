@@ -23,6 +23,7 @@ redis-distributed-lock-demo-spring &nbsp;      redis-distributed-lock-core 调�
         </dependency>
 2. 直接编程方式调用如下，在需要加锁的定时任务中，注入 **RedissonLock** 实体，即可进行加锁、解锁等操作。
 <br/>锁自动释放时间默认为10秒，这个时间需要你根据自己的业务执行时间自行指定。
+
         @Autowired
         RedissonLock redissonLock;
         
