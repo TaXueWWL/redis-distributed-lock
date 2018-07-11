@@ -22,7 +22,7 @@ public class AlipayGatewayServerBootstrap {
     }
 
     /**
-     * @author wuwl@19pay.com.cn
+     * @author snowalker
      * @date 2017-3-17
      * @describe 优化tomcat线程数目
      */

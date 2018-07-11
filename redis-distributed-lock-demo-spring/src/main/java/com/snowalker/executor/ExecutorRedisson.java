@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * @author wuwl@19pay.com.cn
+ * @author snowalker
  * @date 2018-7-9
- * @desc 纯java调用
+ * @desc Redisson锁
  */
 @Component
 public class ExecutorRedisson {

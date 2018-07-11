@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author wuwl@19pay.com.cn
+ * @author snowalker
  * @date 2018-7-9
- * @desc
+ * @desc redis分布式锁核心实现
  */
 public class RedisDistributedLock implements DistributedLock {
 

@@ -3,7 +3,7 @@ package com.snowalker.config;
 import redis.clients.jedis.Jedis;
 
 /**
- * @author wuwl@19pay.com.cn
+ * @author snowalker
  * @date 2018-7-9
  * @desc 封装单机版Jedis工具类
  */

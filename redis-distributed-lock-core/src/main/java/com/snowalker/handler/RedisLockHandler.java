@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @author wuwl@19pay.com.cn
+ * @author snowalker
  * @date 2018-7-9
  * @desc Redis分布式锁注解解析器
  */

@@ -1,7 +1,7 @@
 package com.snowalker.lock;
 
 /**
- * @author wuwl@19pay.com.cn
+ * @author snowalker
  * @date 2018-7-9
  * @desc Redis分布式锁接口声明
  */

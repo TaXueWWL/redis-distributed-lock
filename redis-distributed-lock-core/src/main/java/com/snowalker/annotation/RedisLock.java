@@ -3,9 +3,9 @@ package com.snowalker.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author wuwl@19pay.com.cn
+ * @author snowalker
  * @date 2018-7-9
- * @desc
+ * @desc redisLock自定义注解
  */
 @Documented
 @Inherited
