@@ -84,3 +84,7 @@ redis-distributed-lock-demo-spring &nbsp;      redis-distributed-lock-core 调�
         2018-07-11 09:48:13.625 |-INFO  [pool-3-thread-1] com.snowalker.executor.ExecutorRedissonAnnotation [25] -| [ExecutorRedisson]--执行定时任务结束，休眠三秒
         2018-07-11 09:48:13.627 |-INFO  [pool-3-thread-1] com.snowalker.lock.redisson.annotation.DistributedLockHandler [46] -| 释放Redis分布式锁[成功]，解锁完成，结束业务逻辑...
         2018-07-11 09:48:13.628 |-INFO  [pool-3-thread-1] com.snowalker.lock.redisson.annotation.DistributedLockHandler [50] -| [结束]执行RedisLock环绕通知
+
+## 参考资料
+
+[分布式锁的多种实现](http://wuwenliang.net/2018/07/08/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%A4%9A%E7%A7%8D%E5%AE%9E%E7%8E%B0/)

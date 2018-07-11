@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author snowalker
  * @date 2018/7/10
- * @desc 分布式基于Redisson
+ * @desc 分布式锁实现基于Redisson
  */
 public class RedissonLock {
 

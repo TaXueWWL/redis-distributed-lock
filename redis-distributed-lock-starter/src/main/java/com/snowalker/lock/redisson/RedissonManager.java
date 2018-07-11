@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author snowalker
  * @date 2018/7/10
- * @desc
+ * @desc Redisson核心配置，用于提供初始化的redisson实例
  */
 public class RedissonManager {
 
