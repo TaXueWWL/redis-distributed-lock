@@ -39,6 +39,7 @@ public class RedissonLock {
         } catch (InterruptedException e) {
             LOGGER.error("获取Redisson分布式锁[异常]，lockName=" + lockName, e);
             e.printStackTrace();
+            return false;
         }
         return getLock;
     }

@@ -13,6 +13,11 @@ redis-distributed-lock-demo-spring &nbsp;      redis-distributed-lock-core 调�
  
 ## 文档
 ### springboot应用（直接编程方式）
+0. 配置文件application.properties中引入
+
+        redisson.lock.server.address=127.0.0.1:6379
+        redisson.lock.server.type=standalone
+
 1. 针对springboot应用只需要引入依赖
 
         <!--分布式锁redisson版本-->
