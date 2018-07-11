@@ -1,10 +1,14 @@
 package com.snowalker.lock.redisson;
 
+import com.google.common.base.Preconditions;
 import com.snowalker.lock.redisson.constant.RedisConnectionType;
 import org.redisson.Redisson;
 import org.redisson.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author snowalker
@@ -64,28 +68,110 @@ public class RedissonManager {
          * @return Config
          */
         Config createConfig(String connectionType, String address) {
+            Preconditions.checkNotNull(connectionType);
+            Preconditions.checkNotNull(address);
             if (connectionType.equals(RedisConnectionType.STANDALONE.getConnection_type())) {
-                try {
-                    String redisAddr = REDIS_CONNECTION_PREFIX + address;
-                    config.useSingleServer().setAddress(redisAddr);
-                    LOGGER.info("初始化standalone方式Config,redisAddress:" + redisAddr);
-                } catch (Exception e) {
-                    LOGGER.error("standalone Redisson init error", e);
-                    e.printStackTrace();
-                }
-                return config;
+                return createStandaloneConfig(address);
             } else if (connectionType.equals(RedisConnectionType.SENTINEL.getConnection_type())) {
-                return null;
+                return createSentinelConfig(address);
+            } else if (connectionType.equals(RedisConnectionType.CLUSTER.getConnection_type())) {
+                return createClusterConfig(address);
+            } else if (connectionType.equals(RedisConnectionType.MASTERSLAVE.getConnection_type())) {
+                return createMasterSlaveConfig(address);
             }
             throw new RuntimeException("创建Redisson连接Config失败！当前连接方式:" + connectionType);
         }
+
+        /**
+         * 主从方式配置
+         * @param address
+         * @return
+         */
+        private Config createMasterSlaveConfig(String address) {
+            try {
+                String[] addrTokens = address.split(",");
+                String masterNodeAddr = addrTokens[0];
+                /**设置主节点ip*/
+                config.useMasterSlaveServers().setMasterAddress(masterNodeAddr);
+                /**设置从节点，移除第一个节点，默认第一个为主节点*/
+                List<String> slaveList = new ArrayList<>();
+                for (String addrToken : addrTokens) {
+                    slaveList.add(REDIS_CONNECTION_PREFIX + addrToken);
+                }
+                slaveList.remove(0);
+
+                config.useMasterSlaveServers().addSlaveAddress((String[]) slaveList.toArray());
+                LOGGER.info("初始化[MASTERSLAVE]方式Config,redisAddress:" + address);
+            } catch (Exception e) {
+                LOGGER.error("MASTERSLAVE Redisson init error", e);
+                e.printStackTrace();
+            }
+            return config;
+        }
+
+        /**
+         * 集群方式配置
+         * @param address
+         * @return
+         */
+        private Config createClusterConfig(String address) {
+            try {
+                String[] addrTokens = address.split(",");
+                /**设置cluster节点的服务IP和端口*/
+                for (int i = 0; i < addrTokens.length; i++) {
+                    config.useClusterServers().addNodeAddress(REDIS_CONNECTION_PREFIX + addrTokens[i]);
+                }
+                LOGGER.info("初始化[cluster]方式Config,redisAddress:" + address);
+            } catch (Exception e) {
+                LOGGER.error("cluster Redisson init error", e);
+                e.printStackTrace();
+            }
+            return config;
+        }
+
+        /**
+         * 哨兵方式配置
+         * @param address
+         * @return
+         */
+        private Config createSentinelConfig(String address) {
+            try {
+                String[] addrTokens = address.split(",");
+                String sentinelAliasName = addrTokens[0];
+                /**设置redis配置文件sentinel.conf配置的sentinel别名*/
+                config.useSentinelServers()
+                        .setMasterName(sentinelAliasName);
+                /**设置sentinel节点的服务IP和端口*/
+                for (int i = 1; i < addrTokens.length; i++) {
+                    config.useSentinelServers().addSentinelAddress(REDIS_CONNECTION_PREFIX + addrTokens[i]);
+                }
+                LOGGER.info("初始化[sentinel]方式Config,redisAddress:" + address);
+            } catch (Exception e) {
+                LOGGER.error("sentinel Redisson init error", e);
+                e.printStackTrace();
+            }
+            return config;
+        }
+
+        /**
+         * 单机方式配置
+         * @param address
+         * @return
+         */
+        private Config createStandaloneConfig(String address) {
+            try {
+                String redisAddr = REDIS_CONNECTION_PREFIX + address;
+                config.useSingleServer().setAddress(redisAddr);
+                LOGGER.info("初始化[standalone]方式Config,redisAddress:" + address);
+            } catch (Exception e) {
+                LOGGER.error("standalone Redisson init error", e);
+                e.printStackTrace();
+            }
+            return config;
+        }
+
     }
 
-    public static void main(String[] args) {
-        Config config = new Config();
-        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
-        Redisson redisson = (Redisson) Redisson.create(config);
-    }
 }
 
 
