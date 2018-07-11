@@ -39,8 +39,9 @@ public class RedissonAutoConfiguration {
     @Order(value = 1)
     public RedissonManager redissonManager(RedissonProperties redissonProperties) {
         RedissonManager redissonManager =
-                new RedissonManager(redissonProperties.getHost(), redissonProperties.getPort());
-        LOGGER.info("[RedissonManager]组装完毕");
+                new RedissonManager(redissonProperties.getType(), redissonProperties.getAddress());
+        LOGGER.info("[RedissonManager]组装完毕,当前连接方式:" + redissonProperties.getType() +
+            ",连接地址:" + redissonProperties.getAddress());
         return redissonManager;
     }
 }
