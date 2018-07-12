@@ -1,5 +1,7 @@
 C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\annotation\RedisLock.java
 C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\lock\RedisDistributedLock.java
+C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\lock\redisson\RedissonManager.java
+C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\lock\redisson\RedissonLock.java
 C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\config\RedisPool.java
 C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\config\RedisPoolUtil.java
 C:\Users\snowalker\IdeaProjects\redis-distributed-lock\redis-distributed-lock-core\src\main\java\com\snowalker\util\PropertiesUtil.java

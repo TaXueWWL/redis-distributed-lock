@@ -1,4 +1,6 @@
+com\snowalker\lock\redisson\RedissonManager.class
 com\snowalker\lock\DistributedLock.class
+com\snowalker\lock\redisson\RedissonLock.class
 com\snowalker\lock\RedisDistributedLock.class
 com\snowalker\util\PropertiesUtil.class
 com\snowalker\annotation\RedisLock.class
