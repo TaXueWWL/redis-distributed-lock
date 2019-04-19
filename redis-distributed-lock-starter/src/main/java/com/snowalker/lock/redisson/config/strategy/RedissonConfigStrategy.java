@@ -1,5 +1,6 @@
 package com.snowalker.lock.redisson.config.strategy;
 
+import com.snowalker.lock.redisson.config.RedissonProperties;
 import org.redisson.config.Config;
 
 /**
@@ -11,8 +12,8 @@ public interface RedissonConfigStrategy {
 
     /**
      * 根据不同的Redis配置策略创建对应的Config
-     * @param address
+     * @param redissonProperties
      * @return Config
      */
-    Config createRedissonConfig(String address);
+    Config createRedissonConfig(RedissonProperties redissonProperties);
 }

@@ -5,7 +5,7 @@
 
 	<groupId>com.snowalker</groupId>
 	<artifactId>redis-distributed-lock-starter</artifactId>
-	<version>1.1.1</version>
+	<version>1.2.0</version>
 	<packaging>jar</packaging>
 
 	<name>redis-distributed-lock-starter</name>
@@ -19,10 +19,10 @@
 	</parent>
 
 	<properties>
-		<aspectjweaver>1.8.10</aspectjweaver>
-		<aspecjrt>1.8.10</aspecjrt>
+		<aspectjweaver>1.8.13</aspectjweaver>
+		<aspecjrt>1.8.13</aspecjrt>
 		<apache-common-lang3>3.4</apache-common-lang3>
-		<google-guava>20.0</google-guava>
+		<google-guava>26.0-jre</google-guava>
 		<apache-common-lang3>3.4</apache-common-lang3>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -47,25 +47,26 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectjweaver}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
-
-
+		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
 		<dependency>
 			<groupId>org.redisson</groupId>

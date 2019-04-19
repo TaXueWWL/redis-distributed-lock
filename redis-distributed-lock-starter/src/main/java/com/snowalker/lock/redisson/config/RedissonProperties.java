@@ -14,6 +14,28 @@ public class RedissonProperties {
     private String address;
     /**连接类型，支持standalone-单机节点，sentinel-哨兵，cluster-集群，masterslave-主从*/
     private String type;
+    /**redis连接密码*/
+    private String password;
+    /**选取那个数据库*/
+    private int database;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public RedissonProperties setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public int getDatabase() {
+        return database;
+    }
+
+    public RedissonProperties setDatabase(int database) {
+        this.database = database;
+        return this;
+    }
 
     public String getAddress() {
         return address;

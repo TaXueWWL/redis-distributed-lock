@@ -36,11 +36,11 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.snowalker</groupId>-->
-            <!--<artifactId>redis-distributed-lock-starter</artifactId>-->
-            <!--<version>1.0.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.snowalker</groupId>
+            <artifactId>redis-distributed-lock-starter</artifactId>
+            <version>1.2.0</version>
+        </dependency>
         <dependency>
             <groupId>com.snowalker</groupId>
             <artifactId>redis-distributed-lock-core</artifactId>
@@ -98,7 +98,6 @@
             <version>2.6.1</version>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>

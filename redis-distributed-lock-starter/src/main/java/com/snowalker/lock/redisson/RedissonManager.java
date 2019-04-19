@@ -1,6 +1,7 @@
 package com.snowalker.lock.redisson;
 
 import com.google.common.base.Preconditions;
+import com.snowalker.lock.redisson.config.RedissonProperties;
 import com.snowalker.lock.redisson.config.strategy.*;
 import com.snowalker.lock.redisson.constant.RedisConnectionType;
 import org.redisson.Redisson;
@@ -23,14 +24,14 @@ public class RedissonManager {
 
     public RedissonManager() {}
 
-    public RedissonManager (String connectionType, String address) {
+    public RedissonManager(RedissonProperties redissonProperties) {
         try {
-            config = RedissonConfigFactory.getInstance().createConfig(connectionType, address);
+            config = RedissonConfigFactory.getInstance().createConfig(redissonProperties);
             redisson = (Redisson) Redisson.create(config);
         } catch (Exception e) {
             LOGGER.error("Redisson init error", e);
-            e.printStackTrace();
-        }
+            throw new IllegalArgumentException("please input correct configurations," +
+                    "connectionType must in standalone/sentinel/cluster/masterslave");        }
     }
 
     public Redisson getRedisson() {
@@ -58,14 +59,17 @@ public class RedissonManager {
         private Config config = new Config();
 
         /**
-         * 根据连接类型及连接地址参数获取对应连接方式的配置,基于策略模式
-         * @param connectionType
-         * @param address
+         * 根据连接类型获取对应连接方式的配置,基于策略模式
+         * @param redissonProperties
          * @return Config
          */
-        Config createConfig(String connectionType, String address) {
-            Preconditions.checkNotNull(connectionType);
-            Preconditions.checkNotNull(address);
+        Config createConfig(RedissonProperties redissonProperties) {
+            Preconditions.checkNotNull(redissonProperties);
+            Preconditions.checkNotNull(redissonProperties.getAddress(), "redisson.lock.server.address cannot be NULL!");
+            Preconditions.checkNotNull(redissonProperties.getType(), "redisson.lock.server.password cannot be NULL");
+            Preconditions.checkNotNull(redissonProperties.getDatabase(), "redisson.lock.server.database cannot be NULL");
+            Preconditions.checkNotNull(redissonProperties.getPassword(), "redisson.lock.server.type cannot be NULL");
+            String connectionType = redissonProperties.getType();
             /**声明配置上下文*/
             RedissonConfigContext redissonConfigContext = null;
             if (connectionType.equals(RedisConnectionType.STANDALONE.getConnection_type())) {
@@ -77,9 +81,9 @@ public class RedissonManager {
             } else if (connectionType.equals(RedisConnectionType.MASTERSLAVE.getConnection_type())) {
                 redissonConfigContext = new RedissonConfigContext(new MasterslaveRedissonConfigStrategyImpl());
             } else {
-                throw new RuntimeException("创建Redisson连接Config失败！当前连接方式:" + connectionType);
+                throw new IllegalArgumentException("创建Redisson连接Config失败！当前连接方式:" + connectionType);
             }
-            return redissonConfigContext.createRedissonConfig(address);
+            return redissonConfigContext.createRedissonConfig(redissonProperties);
         }
     }
 

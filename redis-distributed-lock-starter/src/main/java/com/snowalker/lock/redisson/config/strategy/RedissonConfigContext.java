@@ -1,5 +1,6 @@
 package com.snowalker.lock.redisson.config.strategy;
 
+import com.snowalker.lock.redisson.config.RedissonProperties;
 import org.redisson.config.Config;
 
 /**
@@ -17,10 +18,10 @@ public class RedissonConfigContext {
 
     /**
      * 上下文根据构造中传入的具体策略产出真实的Redisson的Config
-     * @param address
+     * @param redissonProperties
      * @return
      */
-    public Config createRedissonConfig(String address) {
-        return this.redissonConfigStrategy.createRedissonConfig(address);
+    public Config createRedissonConfig(RedissonProperties redissonProperties) {
+        return this.redissonConfigStrategy.createRedissonConfig(redissonProperties);
     }
 }

@@ -1,6 +1,8 @@
 package com.snowalker.lock.redisson.config.strategy;
 
+import com.snowalker.lock.redisson.config.RedissonProperties;
 import com.snowalker.lock.redisson.constant.GlobalConstant;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +22,20 @@ public class MasterslaveRedissonConfigStrategyImpl implements RedissonConfigStra
     private static final Logger LOGGER = LoggerFactory.getLogger(ClusterRedissonConfigStrategyImpl.class);
 
     @Override
-    public Config createRedissonConfig(String address) {
+    public Config createRedissonConfig(RedissonProperties redissonProperties) {
         Config config = new Config();
         try {
+            String address = redissonProperties.getAddress();
+            String password = redissonProperties.getPassword();
+            int database = redissonProperties.getDatabase();
             String[] addrTokens = address.split(",");
             String masterNodeAddr = addrTokens[0];
             /**设置主节点ip*/
             config.useMasterSlaveServers().setMasterAddress(masterNodeAddr);
+            if (StringUtils.isNotBlank(password)) {
+                config.useMasterSlaveServers().setPassword(password);
+            }
+            config.useMasterSlaveServers().setDatabase(database);
             /**设置从节点，移除第一个节点，默认第一个为主节点*/
             List<String> slaveList = new ArrayList<>();
             for (String addrToken : addrTokens) {
