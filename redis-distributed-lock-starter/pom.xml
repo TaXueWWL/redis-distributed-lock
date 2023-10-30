@@ -22,7 +22,7 @@
 		<aspectjweaver>1.8.13</aspectjweaver>
 		<aspecjrt>1.8.13</aspecjrt>
 		<apache-common-lang3>3.4</apache-common-lang3>
-		<google-guava>29.0-jre</google-guava>
+		<google-guava>32.0.0-jre</google-guava>
 		<apache-common-lang3>3.4</apache-common-lang3>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
