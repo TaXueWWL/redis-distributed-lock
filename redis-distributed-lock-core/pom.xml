@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.18.RELEASE</version>
+            <version>5.2.22.RELEASE</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
